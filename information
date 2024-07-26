@@ -1,0 +1,13 @@
+"""
+{
+    '/home':home,
+    '/about':about
+}
+"""
+# /hello/tom/ --> "Hello Tom
+# /hello/margo/ --> "Hello Margo
+# /hello/john/ --> "Hello John
+
+/////////////////////////////////////////////////
+
+/hello/tom/ != /hello/{name}/
