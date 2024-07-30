@@ -1,0 +1,2 @@
+[run]
+omit = venv/*, main.py, test_app.py, conftest.py, information.txt, requirements.txt, .gitignore

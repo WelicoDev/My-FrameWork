@@ -4,6 +4,15 @@
     '/about':about
 }
 """
+
+@app.route('/home')
+def home(request, response):
+    response.text = "Duplicate Home Page 2"
+
+//////////////////////////////////////////////
+
+///////////////////////////////////////////////
+
 # /hello/tom/ --> "Hello Tom
 # /hello/margo/ --> "Hello Margo
 # /hello/john/ --> "Hello John
@@ -11,3 +20,24 @@
 /////////////////////////////////////////////////
 
 /hello/tom/ != /hello/{name}/
+
+/////////////////////////////////////////////////
+
+Duplicate routes
+Class-based handlers
+
+/////////////////////////////////////////////////
+
+if path in self.routes:
+    raise AssertionError("Duplicate route. Please change the URL.")
+
+/////////////////////////////////////////////////
+
+request.method -> get/post/head/option
+find the right class method
+return Method Not Allowed exception
+
+//////////////////////////////////////////////////
+
+pytest --cov=. test_app.py
+
