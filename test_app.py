@@ -85,3 +85,25 @@ def test_template_handler(app, test_client):
     assert "New Project" in response.text
     assert "FastApi project" in response.text
     assert "text/html" in response.headers["Content-Type"]
+
+def test_custom_exception_handler(app, test_client):
+    def on_exception(request, response, exc):
+        response.text = "Something bad happened"
+
+    app.add_exception_handler(on_exception)
+
+    @app.route('/exception')
+    def exception_trowing_handler(request, response):
+        raise AttributeError("Some exception")
+
+    response = test_client.get("http://testserver/exception")
+
+    assert response.text == "Something bad happened"
+
+def test_none_existent_static_file(test_client):
+    assert test_client.get("http://testserver/nonexitent.css").status_code == 404
+
+def test_serving_static_file(test_client):
+    response = test_client.get("http://testserver/test.css")
+
+    assert response.text == "body {background-color: green;}"

@@ -40,3 +40,13 @@ def template_handler(request, response):
         "content":"New FastApi Project"
                }
     response.body = app.template("home.html", context=context)
+
+
+def on_exception(request, response, exc):
+    response.text = str(exc)
+
+app.add_exception_handler(on_exception)
+
+@app.route('/exception')
+def exception_trowing_handler(request, response):
+    raise AttributeError("Some exception")
