@@ -1,5 +1,6 @@
 import pytest
 from conftest import app
+from middleware import Middleware
 
 def test_basic_route_adding(app):
     @app.route('/home')
@@ -104,6 +105,34 @@ def test_none_existent_static_file(test_client):
     assert test_client.get("http://testserver/nonexitent.css").status_code == 404
 
 def test_serving_static_file(test_client):
-    response = test_client.get("http://testserver/test.css")
+    response = test_client.get("http://testserver/static/test.css")
 
     assert response.text == "body {background-color: green;}"
+
+
+def test_middleware_methods_are_called(app, test_client):
+    process_request_called = False
+    process_response_called = False
+    class SimpleMiddleware(Middleware):
+        def __init__(self, app):
+            super().__init__(app)
+
+        def process_request(self, request):
+            nonlocal process_request_called
+            process_request_called = True
+
+        def process_response(self, request, response):
+            nonlocal process_response_called
+            process_response_called = True
+
+    app.add_middleware(SimpleMiddleware)
+
+    @app.route("/home")
+    def index(request, response):
+        response.text = "from handler"
+
+    test_client.get("http://testserver/home")
+
+    assert process_request_called is True
+    assert process_response_called is True
+

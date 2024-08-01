@@ -1,4 +1,6 @@
 from app import MyFrameApp
+from middleware import Middleware
+
 
 app = MyFrameApp()
 
@@ -50,3 +52,14 @@ app.add_exception_handler(on_exception)
 @app.route('/exception')
 def exception_trowing_handler(request, response):
     raise AttributeError("Some exception")
+
+class LoggingMiddleware(Middleware):
+    def __init__(self, app):
+        super().__init__(app)
+    def process_request(self, request):
+        print("request is being called")
+
+    def process_response(self, request, response):
+        print("response has been generated")
+
+app.add_middleware(LoggingMiddleware)
