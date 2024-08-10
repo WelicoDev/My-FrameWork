@@ -41,3 +41,11 @@ return Method Not Allowed exception
 
 pytest --cov=. test_app.py
 
+/////////////////////////////////////////////////
+
+{
+    "/home":{"handler":home_function , "allowed_methods":allowed_methods,
+    "/about", about_function
+}
+
+/////////////////////////////////////////////////

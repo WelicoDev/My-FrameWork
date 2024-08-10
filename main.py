@@ -1,18 +1,19 @@
 from app import MyFrameApp
 from middleware import Middleware
-
+import json
 
 app = MyFrameApp()
 
 
 # /home
-@app.route('/home')
+@app.route('/home', allowed_methods=["get"])
 def home(request, response):
     response.text = "Hello from the Home Page"
 
 
+
 # /about
-@app.route("/about")
+@app.route("/about", allowed_methods=["put"])
 def about(request, response):
     response.text = "Hello from the About Page"
 
@@ -41,8 +42,14 @@ def template_handler(request, response):
         "title":"New Project",
         "content":"New FastApi Project"
                }
-    response.body = app.template("home.html", context=context)
+    response.html = app.template("home.html", context=context)
 
+@app.route("/json")
+def json_handler(request, response):
+    response_data = {"name": "same name", "type":"json"}
+    response.json = response_data
+    # response.body = json.dumps(response_data).encode()
+    # response.content_type = "application/json"
 
 def on_exception(request, response, exc):
     response.text = str(exc)

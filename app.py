@@ -1,4 +1,5 @@
-from webob import Request, Response
+from webob import Request
+from response import Response
 from parse import parse
 import inspect
 import requests
@@ -40,17 +41,21 @@ class MyFrameApp:
     def handle_request(self, request):
         response = Response()
 
-        handler, kwargs = self.find_handler(request)
+        handler_data, kwargs = self.find_handler(request)
 
-        if handler is not None:
+        if handler_data is not None:
+            handler = handler_data["handler"]
+            allowed_methods = handler_data["allowed_methods"]
+
             if inspect.isclass(handler):
                 handler = getattr(handler(), request.method.lower(), None)
 
                 if handler is None:
-                    response.status_code = 405
-                    response.text = "Method Not Allowed"
+                    return self.method_not_allowed_response(response)
+            else:
+                if request.method.lower() not in allowed_methods:
+                    return self.method_not_allowed_response(response)
 
-                    return response
 
             try:
                 handler(request, response, **kwargs)
@@ -66,28 +71,38 @@ class MyFrameApp:
 
         return response
 
+    def method_not_allowed_response(self, response):
+        response.status_code = 405
+        response.text = "Method Not Allowed"
+
+        return response
+
     def find_handler(self, request):
-        for path, handler in self.routes.items():
+        for path, handler_data in self.routes.items():
             parsed_result = parse(path, request.path)
 
             if parsed_result is not None:
-                return handler, parsed_result.named
+                return handler_data, parsed_result.named
+
         return None, None
 
     def default_response(self, response):
         response.status_code = 404
         response.text = "Not Found 404"
 
-    def add_route(self, path, handler):
+    def add_route(self, path, handler, allowed_methods=None):
         assert path not in self.routes, "Duplicate route. Please change the URL"
 
-        self.routes[path] = handler
+        if allowed_methods is None:
+            allowed_methods = ["get", "post", "put", "patch", "head", "options", "delete", "connect", "trace"]
 
-    def route(self, path):
+        self.routes[path] = dict(handler=handler, allowed_methods=allowed_methods)
+
+
+    def route(self, path, allowed_methods=None):
 
         def wrapper(handler):
-            self.add_route(path, handler)
-            self.routes[path] = handler
+            self.add_route(path, handler, allowed_methods)
             return handler
 
         return wrapper
@@ -102,7 +117,7 @@ class MyFrameApp:
         if context is None:
             context = {}
 
-        return self.template_env.get_template(template_name).render(**context).encode()
+        return self.template_env.get_template(template_name).render(**context)
 
     def add_exception_handler(self, handler):
         self.exception_handler = handler

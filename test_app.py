@@ -136,3 +136,52 @@ def test_middleware_methods_are_called(app, test_client):
     assert process_request_called is True
     assert process_response_called is True
 
+def test_allowed_method_for_function_based_handlers(app, test_client):
+    @app.route("/home", allowed_methods=["post"])
+    def home(request, response):
+        response.text = "Hello from Home"
+
+    response = test_client.get("http://testserver/home")
+
+
+    assert response.status_code == 405
+    assert response.text == "Method Not Allowed"
+
+
+def test_json_response_helper(app, test_client):
+
+    @app.route('/json')
+    def json_handler(request, response):
+        response.json = {"name":"Tom"}
+
+    response = (test_client.get("http://testserver/json"))
+    data = response.json()
+
+    assert response.headers["Content-Type"] == "application/json"
+    assert data["name"] == "Tom"
+
+def test_text_response_handler(app, test_client):
+
+    @app.route('/text')
+    def text_handler(request, response):
+        response.text = "plain text"
+
+    response = test_client.get("http://testserver/text")
+
+    assert "text/plain" in response.headers["Content-Type"]
+    assert response.text == "plain text"
+
+def test_html_response_helper(app, test_client):
+    @app.route('/html')
+    def html_handler(request, response):
+        context = {"title": "New Project",
+                   "content": "FastApi project"
+                   }
+
+        response.html = app.template("test.html", context=context)
+
+    response = test_client.get("http://testserver/html")
+
+    assert "text/html" in response.headers["Content-Type"]
+    assert "New Project" in response.text
+    assert "FastApi project" in response.text
