@@ -18,7 +18,7 @@ URL = 'https://github.com/me/myproject'
 EMAIL = 'welicodeveloper@gmail.com'
 AUTHOR = 'Otabek Xurramov'
 REQUIRES_PYTHON = '>=3.9.19'
-VERSION = '1.0.1'
+VERSION = '1.0.2'
 
 # What packages are required for this module to be executed?
 REQUIRED = [

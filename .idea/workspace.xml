@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfa0885c-46f5-4eba-8ff7-514d5798cec8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myframeuz/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/My-FrameWork.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/My-FrameWork.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/myframeuz/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/myframeuz/middleware.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/response.py" beforeDir="false" afterPath="$PROJECT_DIR$/myframeuz/response.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/myframeuz-1.0.1-py2.py3-none-any.whl" beforeDir="false" afterPath="$PROJECT_DIR$/dist/myframeuz-1.0.1-py2.py3-none-any.whl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/myframeuz-1.0.1.tar.gz" beforeDir="false" afterPath="$PROJECT_DIR$/dist/myframeuz-1.0.1.tar.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myframeuz.egg-info/SOURCES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/myframeuz.egg-info/SOURCES.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myframeuz.egg-info/top_level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/myframeuz.egg-info/top_level.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,6 +125,7 @@
       <workItem from="1723088525577" duration="6110000" />
       <workItem from="1723222922770" duration="4320000" />
       <workItem from="1723266222987" duration="9517000" />
+      <workItem from="1723304421608" duration="2022000" />
     </task>
     <servers />
   </component>
