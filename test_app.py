@@ -1,6 +1,6 @@
 import pytest
 from conftest import app
-from middleware import Middleware
+from myframeuz.middleware import Middleware
 
 def test_basic_route_adding(app):
     @app.route('/home')

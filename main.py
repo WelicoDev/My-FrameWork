@@ -1,6 +1,5 @@
-from app import MyFrameApp
-from middleware import Middleware
-import json
+from myframeuz.app import MyFrameApp
+from myframeuz.middleware import Middleware
 
 app = MyFrameApp()
 

@@ -1,5 +1,5 @@
 import pytest
-from app import MyFrameApp
+from myframeuz.app import MyFrameApp
 
 
 @pytest.fixture

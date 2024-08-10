@@ -1,0 +1,7 @@
+README.md
+setup.py
+myframeuz.egg-info/PKG-INFO
+myframeuz.egg-info/SOURCES.txt
+myframeuz.egg-info/dependency_links.txt
+myframeuz.egg-info/requires.txt
+myframeuz.egg-info/top_level.txt
